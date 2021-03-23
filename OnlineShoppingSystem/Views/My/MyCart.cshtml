@@ -1,0 +1,138 @@
+﻿@model OnlineShoppingSystem.Models.ModelMyCart
+@{
+    ViewBag.Title = "MyCart";
+    Layout = "~/Views/Shared/_mylayout.cshtml";
+    <style>
+        * {
+            font-size: 18px;
+        }
+        p {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+            font-size:25px;
+        }
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 55px;
+        }
+
+        .price {
+            font-family: 'Bitter', serif;
+            font-weight: 400;
+        }
+
+        .discountedprice, .columns {
+            font-family: 'Bitter', serif;
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #eee;
+            font-family: 'Calibri', sans-serif !important
+        }
+        .mt-100 {
+            margin-top: 100px
+        }
+        .card {
+            margin-bottom: 30px;
+            border: 0;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+            letter-spacing: .5px;
+            border-radius: 8px;
+            -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+            box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05)
+        }
+        .card .card-header {
+            background-color: #fff;
+            border-bottom: none;
+            padding: 24px;
+            border-bottom: 1px solid #f6f7fb;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px
+        }
+        .card-header:first-child {
+            border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0
+        }
+
+        .card .card-body {
+            padding: 30px;
+            background-color: transparent
+        }
+        .btn-primary,
+        .btn-primary.disabled,
+        .btn-primary:disabled {
+            background-color: #4466f2 !important;
+            border-color: #4466f2 !important
+        }
+    </style>
+}
+<div style="min-height:700px;">
+    @if (!Model.Empty)
+    {
+    <div class="col-lg-12" style="background-color:white">
+        <div class="col-lg-12">
+            <table class="table table-responsive">
+                <tr class="text-center columns">
+                    <td class="col-lg-3">Product Image</td>
+                    <td class="col-lg-2">Product Name</td>
+                    <td class="col-lg-1">Product Price</td>
+                    <td class="col-lg-1">Discounted Price</td>
+                    <td class="col-lg-1">Quantity</td>
+                    <td class="col-lg-1">Total Price</td>
+                    <td class="col-lg-2">Total Discounted Price</td>
+                    <td class="col-lg-1">Remove Product</td>
+                    <td class="col-lg-1">Add Product</td>
+                </tr>
+                @foreach (var item in Model.listMyCarts)
+                {
+                    <tr class="text-center" style="font-size:18px;">
+                        <td><img class="img-rounded" src="~/Images/@item.ProductImageUrl" style="height:180px;width:180px;" /></td>
+                        <td><label>@item.ProductName</label></td>
+                        <td><del class="price">@item.ProductPrice</del></td>
+                        <td><label class="discountedprice">@item.ProductDiscountedPrice$</label></td>
+                        <td><label>@item.Quantity</label></td>
+                        <td><del class="price">@item.TotalItemPrice$</del></td>
+                        <td><label class="discountedprice" style="font-size:20px;">@item.TotalDiscountedPrice$</label></td>
+                        <td>
+                            @using (Html.BeginForm("MyCart", "My", new { Id = item.ProductID }, FormMethod.Post))
+                            {
+                                <button class="btn"><i class="fa fa-trash" aria-hidden="true" style="font-size:36px;color:red;background:none"></i></button>
+                            }
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("ProductDetails", "Product", new { PID = item.ProductID }, FormMethod.Post))
+                            {
+                                <button class="btn"><i class="fa fa-plus" aria-hidden="true" style="font-size:36px;color:green;"></i></button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="text-right" style="padding-right:25px;"><label style="font-size:23px;" class="price"><del>Total Price:@Model.TotalCartPrice$</del></label></div>
+        <div class="text-right" style="padding-right:25px;"><label style="font-size:24px;" class="discountedprice">Total Discounted price:@Model.TotalDiscountedCartPrice$</label></div>
+        <div class="text-right" style="padding-right:25px;margin-bottom:50px;">
+            @Html.ActionLink("Payment", "Payment", "My", new { CartID = @Model.CartID }, new { @class = "btn btn-success cart-btn-transform m-3 ", style = "font-size:22px;font-family: 'Bitter', serif;" })
+        </div>
+    </div>
+    }
+    else
+    {
+        <div class="container-fluid mt-100">
+            <div class="row">   
+                <div class="col-md-12">
+                    <div class="card-body cart">
+                        <div class="col-sm-12 empty-cart-cls text-center">
+                            <i class="fa fa-shopping-cart " style="font-size:250px;"></i>
+                            <h1 style="margin-bottom:10px;">Your Cart is Empty</h1>
+                            <p>You can check our products to add to cart </p>
+                            <a href="/My/Home" class="btn btn-success cart-btn-transform m-3" style="font-size:24px;font-family: 'Bitter', serif;" data-abc="true">continue shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

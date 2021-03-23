@@ -1,0 +1,900 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineShoppingSystemDBForWEBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="CartID" />
+    </Key>
+    <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="TotalCost" Type="float" Nullable="false" />
+    <Property Name="TotalDiscountedCost" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CartItem">
+    <Key>
+      <PropertyRef Name="CartItemID" />
+    </Key>
+    <Property Name="CartItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CartID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="DiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactMessage">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CustomerEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MessageSubject" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CustomerMessage" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerInformation">
+    <Key>
+      <PropertyRef Name="CustInfoID" />
+    </Key>
+    <Property Name="CustInfoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="17" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceDate" Type="date" Nullable="false" />
+    <Property Name="CustID" Type="int" Nullable="false" />
+    <Property Name="PaymentID" Type="int" Nullable="false" />
+    <Property Name="BarcodeNumbers" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoiceProducts">
+    <Key>
+      <PropertyRef Name="InvoiceProductsID" />
+    </Key>
+    <Property Name="InvoiceProductsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CartID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="float" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductStock" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="ProductStar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ProductImagePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductDate" Type="date" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="int" />
+    <Property Name="ProductDiscountedRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductComment">
+    <Key>
+      <PropertyRef Name="ProductCommentID" />
+    </Key>
+    <Property Name="ProductCommentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="ProductStar" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryID" />
+    </Key>
+    <Property Name="SubCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.BestCustomer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BestCustomer">
+    <Key>
+      <PropertyRef Name="Address1" />
+      <PropertyRef Name="Country" />
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="CustInfoID" />
+      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="PhoneNumber" />
+    </Key>
+    <Property Name="total_price" Type="float" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CustID" Type="int" Nullable="false" />
+    <Property Name="CustInfoID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="17" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.BestDiscountedProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BestDiscountedProduct">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductStock" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="ProductStar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ProductImagePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductDate" Type="date" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="int" />
+    <Property Name="ProductDiscountedRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.BestSellingCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BestSellingCategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="NumberOfSales" Type="int" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.BestSellingSubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="BestSellingSubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryID" />
+    </Key>
+    <Property Name="NumberOfSales" Type="int" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.CategoryWithSubCategory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CategoryWithSubCategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="CategoryName" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="SubCategoryName" />
+    </Key>
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.CustomerWithInformation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CustomerWithInformation">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="CustInfoID" />
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Address1" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="PhoneNumber" />
+      <PropertyRef Name="Country" />
+    </Key>
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CustInfoID" Type="int" Nullable="false" />
+    <Property Name="CustID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="17" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.CustomerWithoutShopping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CustomerWithoutShopping">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="CustInfoID" />
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Address1" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="PhoneNumber" />
+      <PropertyRef Name="Country" />
+    </Key>
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="CustInfoID" Type="int" Nullable="false" />
+    <Property Name="CustID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="17" Nullable="false" />
+    <Property Name="Country" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.CustomerWithShopping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CustomerWithShopping">
+    <Key>
+      <PropertyRef Name="customerId" />
+      <PropertyRef Name="firstName" />
+      <PropertyRef Name="lastName" />
+      <PropertyRef Name="PhoneNumber" />
+      <PropertyRef Name="country" />
+    </Key>
+    <Property Name="customerId" Type="int" Nullable="false" />
+    <Property Name="firstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="lastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="17" Nullable="false" />
+    <Property Name="country" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.HighestStarproduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HighestStarproduct">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductStock" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="ProductStar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ProductImagePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductDate" Type="date" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="int" />
+    <Property Name="ProductDiscountedRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.NewProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="NewProduct">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductStock" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="ProductStar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ProductImagePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductDate" Type="date" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="int" />
+    <Property Name="ProductDiscountedRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.ProductsWithLowStock' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProductsWithLowStock">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductStock" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="ProductStar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ProductImagePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductDate" Type="date" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="int" />
+    <Property Name="ProductDiscountedRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.ProductWithBestSelling' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProductWithBestSelling">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductStock" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="ProductStar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ProductImagePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductDate" Type="date" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="int" />
+    <Property Name="ProductDiscountedRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.ProductWithCategoriesAndSubCategories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProductWithCategoriesAndSubCategories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="ProductDate" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="CategoryName" />
+      <PropertyRef Name="SubCategoryName" />
+    </Key>
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductDate" Type="date" Nullable="false" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="ProductDiscountedRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="ProductImagePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="int" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="ProductStar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductStock" Type="int" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="SubCategoryName" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShoppingSystemDBForWEB.System.ProductWithLeastSelling' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ProductWithLeastSelling">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="ProductStock" Type="int" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductPrice" Type="float" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="float" Nullable="false" />
+    <Property Name="ProductStar" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ProductImagePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductDate" Type="date" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="int" />
+    <Property Name="ProductDiscountedRate" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="int" />
+  </EntityType>
+  <Association Name="FK__Cart__CustomerID__35BCFE0A">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CartItem__CartID__38996AB5">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+    <End Role="CartItem" Type="Self.CartItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="CartID" />
+      </Principal>
+      <Dependent Role="CartItem">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CartItem__Produc__398D8EEE">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="CartItem" Type="Self.CartItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="CartItem">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerI__CustI__32E0915F">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerInformation">
+        <PropertyRef Name="CustID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__CustID__403A8C7D">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="CustID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__Payment__412EB0B6">
+    <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment">
+        <PropertyRef Name="PaymentID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoicePr__Invoi__440B1D61">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+    <End Role="InvoiceProducts" Type="Self.InvoiceProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="InvoiceProducts">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoicePr__Produ__44FF419A">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="InvoiceProducts" Type="Self.InvoiceProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="InvoiceProducts">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment__CartID__3C69FB99">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="CartID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment__Custome__3D5E1FD2">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__Categor__2D27B809">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__SubCate__2E1BDC42">
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="SubCategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SubCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubCatego__Categ__2A4B4B5E">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineShoppingSystemDBForWEBModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="System" store:Type="Tables" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="System" store:Type="Tables" />
+    <EntitySet Name="CartItem" EntityType="Self.CartItem" Schema="System" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="System" store:Type="Tables" />
+    <EntitySet Name="ContactMessage" EntityType="Self.ContactMessage" Schema="System" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="System" store:Type="Tables" />
+    <EntitySet Name="CustomerInformation" EntityType="Self.CustomerInformation" Schema="System" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="System" store:Type="Tables" />
+    <EntitySet Name="InvoiceProducts" EntityType="Self.InvoiceProducts" Schema="System" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="System" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="System" store:Type="Tables" />
+    <EntitySet Name="ProductComment" EntityType="Self.ProductComment" Schema="System" store:Type="Tables" />
+    <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="System" store:Type="Tables" />
+    <EntitySet Name="BestCustomer" EntityType="Self.BestCustomer" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [BestCustomer].[total_price] AS [total_price], 
+    [BestCustomer].[Address1] AS [Address1], 
+    [BestCustomer].[Country] AS [Country], 
+    [BestCustomer].[CustID] AS [CustID], 
+    [BestCustomer].[CustInfoID] AS [CustInfoID], 
+    [BestCustomer].[CustomerID] AS [CustomerID], 
+    [BestCustomer].[Email] AS [Email], 
+    [BestCustomer].[FirstName] AS [FirstName], 
+    [BestCustomer].[LastName] AS [LastName], 
+    [BestCustomer].[PhoneNumber] AS [PhoneNumber]
+    FROM [System].[BestCustomer] AS [BestCustomer]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BestDiscountedProduct" EntityType="Self.BestDiscountedProduct" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [BestDiscountedProduct].[ProductID] AS [ProductID], 
+    [BestDiscountedProduct].[CategoryID] AS [CategoryID], 
+    [BestDiscountedProduct].[SubCategoryID] AS [SubCategoryID], 
+    [BestDiscountedProduct].[ProductStock] AS [ProductStock], 
+    [BestDiscountedProduct].[ProductName] AS [ProductName], 
+    [BestDiscountedProduct].[ProductPrice] AS [ProductPrice], 
+    [BestDiscountedProduct].[ProductDiscountedPrice] AS [ProductDiscountedPrice], 
+    [BestDiscountedProduct].[ProductStar] AS [ProductStar], 
+    [BestDiscountedProduct].[ProductDescription] AS [ProductDescription], 
+    [BestDiscountedProduct].[ProductImagePath] AS [ProductImagePath], 
+    [BestDiscountedProduct].[ProductDate] AS [ProductDate], 
+    [BestDiscountedProduct].[ProductNumberOfSales] AS [ProductNumberOfSales], 
+    [BestDiscountedProduct].[ProductDiscountedRate] AS [ProductDiscountedRate], 
+    [BestDiscountedProduct].[ProductNumberOfEvaluate] AS [ProductNumberOfEvaluate]
+    FROM [System].[BestDiscountedProduct] AS [BestDiscountedProduct]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BestSellingCategory" EntityType="Self.BestSellingCategory" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [BestSellingCategory].[NumberOfSales] AS [NumberOfSales], 
+    [BestSellingCategory].[CategoryID] AS [CategoryID]
+    FROM [System].[BestSellingCategory] AS [BestSellingCategory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BestSellingSubCategory" EntityType="Self.BestSellingSubCategory" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [BestSellingSubCategory].[NumberOfSales] AS [NumberOfSales], 
+    [BestSellingSubCategory].[SubCategoryID] AS [SubCategoryID]
+    FROM [System].[BestSellingSubCategory] AS [BestSellingSubCategory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CategoryWithSubCategory" EntityType="Self.CategoryWithSubCategory" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [CategoryWithSubCategory].[CategoryID] AS [CategoryID], 
+    [CategoryWithSubCategory].[CategoryName] AS [CategoryName], 
+    [CategoryWithSubCategory].[SubCategoryID] AS [SubCategoryID], 
+    [CategoryWithSubCategory].[SubCategoryName] AS [SubCategoryName]
+    FROM [System].[CategoryWithSubCategory] AS [CategoryWithSubCategory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CustomerWithInformation" EntityType="Self.CustomerWithInformation" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [CustomerWithInformation].[CustomerID] AS [CustomerID], 
+    [CustomerWithInformation].[Password] AS [Password], 
+    [CustomerWithInformation].[UserName] AS [UserName], 
+    [CustomerWithInformation].[CustInfoID] AS [CustInfoID], 
+    [CustomerWithInformation].[CustID] AS [CustID], 
+    [CustomerWithInformation].[FirstName] AS [FirstName], 
+    [CustomerWithInformation].[LastName] AS [LastName], 
+    [CustomerWithInformation].[Address1] AS [Address1], 
+    [CustomerWithInformation].[Email] AS [Email], 
+    [CustomerWithInformation].[PhoneNumber] AS [PhoneNumber], 
+    [CustomerWithInformation].[Country] AS [Country]
+    FROM [System].[CustomerWithInformation] AS [CustomerWithInformation]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CustomerWithoutShopping" EntityType="Self.CustomerWithoutShopping" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [CustomerWithoutShopping].[CustomerID] AS [CustomerID], 
+    [CustomerWithoutShopping].[Password] AS [Password], 
+    [CustomerWithoutShopping].[UserName] AS [UserName], 
+    [CustomerWithoutShopping].[CustInfoID] AS [CustInfoID], 
+    [CustomerWithoutShopping].[CustID] AS [CustID], 
+    [CustomerWithoutShopping].[FirstName] AS [FirstName], 
+    [CustomerWithoutShopping].[LastName] AS [LastName], 
+    [CustomerWithoutShopping].[Address1] AS [Address1], 
+    [CustomerWithoutShopping].[Email] AS [Email], 
+    [CustomerWithoutShopping].[PhoneNumber] AS [PhoneNumber], 
+    [CustomerWithoutShopping].[Country] AS [Country]
+    FROM [System].[CustomerWithoutShopping] AS [CustomerWithoutShopping]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CustomerWithShopping" EntityType="Self.CustomerWithShopping" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [CustomerWithShopping].[customerId] AS [customerId], 
+    [CustomerWithShopping].[firstName] AS [firstName], 
+    [CustomerWithShopping].[lastName] AS [lastName], 
+    [CustomerWithShopping].[PhoneNumber] AS [PhoneNumber], 
+    [CustomerWithShopping].[country] AS [country]
+    FROM [System].[CustomerWithShopping] AS [CustomerWithShopping]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HighestStarproduct" EntityType="Self.HighestStarproduct" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [HighestStarproduct].[ProductID] AS [ProductID], 
+    [HighestStarproduct].[CategoryID] AS [CategoryID], 
+    [HighestStarproduct].[SubCategoryID] AS [SubCategoryID], 
+    [HighestStarproduct].[ProductStock] AS [ProductStock], 
+    [HighestStarproduct].[ProductName] AS [ProductName], 
+    [HighestStarproduct].[ProductPrice] AS [ProductPrice], 
+    [HighestStarproduct].[ProductDiscountedPrice] AS [ProductDiscountedPrice], 
+    [HighestStarproduct].[ProductStar] AS [ProductStar], 
+    [HighestStarproduct].[ProductDescription] AS [ProductDescription], 
+    [HighestStarproduct].[ProductImagePath] AS [ProductImagePath], 
+    [HighestStarproduct].[ProductDate] AS [ProductDate], 
+    [HighestStarproduct].[ProductNumberOfSales] AS [ProductNumberOfSales], 
+    [HighestStarproduct].[ProductDiscountedRate] AS [ProductDiscountedRate], 
+    [HighestStarproduct].[ProductNumberOfEvaluate] AS [ProductNumberOfEvaluate]
+    FROM [System].[HighestStarproduct] AS [HighestStarproduct]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="NewProduct" EntityType="Self.NewProduct" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [NewProduct].[ProductID] AS [ProductID], 
+    [NewProduct].[CategoryID] AS [CategoryID], 
+    [NewProduct].[SubCategoryID] AS [SubCategoryID], 
+    [NewProduct].[ProductStock] AS [ProductStock], 
+    [NewProduct].[ProductName] AS [ProductName], 
+    [NewProduct].[ProductPrice] AS [ProductPrice], 
+    [NewProduct].[ProductDiscountedPrice] AS [ProductDiscountedPrice], 
+    [NewProduct].[ProductStar] AS [ProductStar], 
+    [NewProduct].[ProductDescription] AS [ProductDescription], 
+    [NewProduct].[ProductImagePath] AS [ProductImagePath], 
+    [NewProduct].[ProductDate] AS [ProductDate], 
+    [NewProduct].[ProductNumberOfSales] AS [ProductNumberOfSales], 
+    [NewProduct].[ProductDiscountedRate] AS [ProductDiscountedRate], 
+    [NewProduct].[ProductNumberOfEvaluate] AS [ProductNumberOfEvaluate]
+    FROM [System].[NewProduct] AS [NewProduct]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProductsWithLowStock" EntityType="Self.ProductsWithLowStock" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [ProductsWithLowStock].[ProductID] AS [ProductID], 
+    [ProductsWithLowStock].[CategoryID] AS [CategoryID], 
+    [ProductsWithLowStock].[SubCategoryID] AS [SubCategoryID], 
+    [ProductsWithLowStock].[ProductStock] AS [ProductStock], 
+    [ProductsWithLowStock].[ProductName] AS [ProductName], 
+    [ProductsWithLowStock].[ProductPrice] AS [ProductPrice], 
+    [ProductsWithLowStock].[ProductDiscountedPrice] AS [ProductDiscountedPrice], 
+    [ProductsWithLowStock].[ProductStar] AS [ProductStar], 
+    [ProductsWithLowStock].[ProductDescription] AS [ProductDescription], 
+    [ProductsWithLowStock].[ProductImagePath] AS [ProductImagePath], 
+    [ProductsWithLowStock].[ProductDate] AS [ProductDate], 
+    [ProductsWithLowStock].[ProductNumberOfSales] AS [ProductNumberOfSales], 
+    [ProductsWithLowStock].[ProductDiscountedRate] AS [ProductDiscountedRate], 
+    [ProductsWithLowStock].[ProductNumberOfEvaluate] AS [ProductNumberOfEvaluate]
+    FROM [System].[ProductsWithLowStock] AS [ProductsWithLowStock]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProductWithBestSelling" EntityType="Self.ProductWithBestSelling" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [ProductWithBestSelling].[ProductID] AS [ProductID], 
+    [ProductWithBestSelling].[CategoryID] AS [CategoryID], 
+    [ProductWithBestSelling].[SubCategoryID] AS [SubCategoryID], 
+    [ProductWithBestSelling].[ProductStock] AS [ProductStock], 
+    [ProductWithBestSelling].[ProductName] AS [ProductName], 
+    [ProductWithBestSelling].[ProductPrice] AS [ProductPrice], 
+    [ProductWithBestSelling].[ProductDiscountedPrice] AS [ProductDiscountedPrice], 
+    [ProductWithBestSelling].[ProductStar] AS [ProductStar], 
+    [ProductWithBestSelling].[ProductDescription] AS [ProductDescription], 
+    [ProductWithBestSelling].[ProductImagePath] AS [ProductImagePath], 
+    [ProductWithBestSelling].[ProductDate] AS [ProductDate], 
+    [ProductWithBestSelling].[ProductNumberOfSales] AS [ProductNumberOfSales], 
+    [ProductWithBestSelling].[ProductDiscountedRate] AS [ProductDiscountedRate], 
+    [ProductWithBestSelling].[ProductNumberOfEvaluate] AS [ProductNumberOfEvaluate]
+    FROM [System].[ProductWithBestSelling] AS [ProductWithBestSelling]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProductWithCategoriesAndSubCategories" EntityType="Self.ProductWithCategoriesAndSubCategories" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [ProductWithCategoriesAndSubCategories].[CategoryID] AS [CategoryID], 
+    [ProductWithCategoriesAndSubCategories].[ProductDate] AS [ProductDate], 
+    [ProductWithCategoriesAndSubCategories].[ProductDescription] AS [ProductDescription], 
+    [ProductWithCategoriesAndSubCategories].[ProductDiscountedPrice] AS [ProductDiscountedPrice], 
+    [ProductWithCategoriesAndSubCategories].[ProductDiscountedRate] AS [ProductDiscountedRate], 
+    [ProductWithCategoriesAndSubCategories].[ProductID] AS [ProductID], 
+    [ProductWithCategoriesAndSubCategories].[ProductImagePath] AS [ProductImagePath], 
+    [ProductWithCategoriesAndSubCategories].[ProductName] AS [ProductName], 
+    [ProductWithCategoriesAndSubCategories].[ProductNumberOfSales] AS [ProductNumberOfSales], 
+    [ProductWithCategoriesAndSubCategories].[ProductPrice] AS [ProductPrice], 
+    [ProductWithCategoriesAndSubCategories].[ProductStar] AS [ProductStar], 
+    [ProductWithCategoriesAndSubCategories].[ProductStock] AS [ProductStock], 
+    [ProductWithCategoriesAndSubCategories].[SubCategoryID] AS [SubCategoryID], 
+    [ProductWithCategoriesAndSubCategories].[CategoryName] AS [CategoryName], 
+    [ProductWithCategoriesAndSubCategories].[SubCategoryName] AS [SubCategoryName]
+    FROM [System].[ProductWithCategoriesAndSubCategories] AS [ProductWithCategoriesAndSubCategories]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ProductWithLeastSelling" EntityType="Self.ProductWithLeastSelling" store:Type="Views" store:Schema="System">
+      <DefiningQuery>SELECT 
+    [ProductWithLeastSelling].[ProductID] AS [ProductID], 
+    [ProductWithLeastSelling].[CategoryID] AS [CategoryID], 
+    [ProductWithLeastSelling].[SubCategoryID] AS [SubCategoryID], 
+    [ProductWithLeastSelling].[ProductStock] AS [ProductStock], 
+    [ProductWithLeastSelling].[ProductName] AS [ProductName], 
+    [ProductWithLeastSelling].[ProductPrice] AS [ProductPrice], 
+    [ProductWithLeastSelling].[ProductDiscountedPrice] AS [ProductDiscountedPrice], 
+    [ProductWithLeastSelling].[ProductStar] AS [ProductStar], 
+    [ProductWithLeastSelling].[ProductDescription] AS [ProductDescription], 
+    [ProductWithLeastSelling].[ProductImagePath] AS [ProductImagePath], 
+    [ProductWithLeastSelling].[ProductDate] AS [ProductDate], 
+    [ProductWithLeastSelling].[ProductNumberOfSales] AS [ProductNumberOfSales], 
+    [ProductWithLeastSelling].[ProductDiscountedRate] AS [ProductDiscountedRate], 
+    [ProductWithLeastSelling].[ProductNumberOfEvaluate] AS [ProductNumberOfEvaluate]
+    FROM [System].[ProductWithLeastSelling] AS [ProductWithLeastSelling]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Cart__CustomerID__35BCFE0A" Association="Self.FK__Cart__CustomerID__35BCFE0A">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CartItem__CartID__38996AB5" Association="Self.FK__CartItem__CartID__38996AB5">
+      <End Role="Cart" EntitySet="Cart" />
+      <End Role="CartItem" EntitySet="CartItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CartItem__Produc__398D8EEE" Association="Self.FK__CartItem__Produc__398D8EEE">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="CartItem" EntitySet="CartItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerI__CustI__32E0915F" Association="Self.FK__CustomerI__CustI__32E0915F">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__CustID__403A8C7D" Association="Self.FK__Invoice__CustID__403A8C7D">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__Payment__412EB0B6" Association="Self.FK__Invoice__Payment__412EB0B6">
+      <End Role="Payment" EntitySet="Payment" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoicePr__Invoi__440B1D61" Association="Self.FK__InvoicePr__Invoi__440B1D61">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="InvoiceProducts" EntitySet="InvoiceProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoicePr__Produ__44FF419A" Association="Self.FK__InvoicePr__Produ__44FF419A">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="InvoiceProducts" EntitySet="InvoiceProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment__CartID__3C69FB99" Association="Self.FK__Payment__CartID__3C69FB99">
+      <End Role="Cart" EntitySet="Cart" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment__Custome__3D5E1FD2" Association="Self.FK__Payment__Custome__3D5E1FD2">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__Categor__2D27B809" Association="Self.FK__Product__Categor__2D27B809">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__SubCate__2E1BDC42" Association="Self.FK__Product__SubCate__2E1BDC42">
+      <End Role="SubCategory" EntitySet="SubCategory" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubCatego__Categ__2A4B4B5E" Association="Self.FK__SubCatego__Categ__2A4B4B5E">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="SubCategory" EntitySet="SubCategory" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

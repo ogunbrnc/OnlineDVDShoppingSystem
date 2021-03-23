@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "ContactMessages";
+    Layout = "~/Views/Shared/_myAdminLayout.cshtml";
+    <style>
+        td {
+            font-size: 18px;
+            font-weight: 400;
+        }
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 50px;
+        }
+    </style>
+}
+
+<div class="container" style="min-height:750px;">
+    <div class="col-lg-16" style="margin-bottom:50px;">
+        <div class="col-lg-12">
+            <h1 class="text-center text-capitalize" style="margin-bottom:70px;">Last Messages</h1>
+            <table class="table table-bordered table-responsive">
+                <tr class="text-center">
+                    <td class="col-lg-1">Sender's Name</td>
+                    <td class="col-lg-1">Sender's Email</td>
+                    <td class="col-lg-1">Message Subject</td>
+                    <td class="col-lg-1">Message</td>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center">
+                        <td>@item.CustomerName</td>
+                        <td>@item.CustomerEmail</td>
+                        <td class="price">@item.MessageSubject</td>
+                        <td class="discountedprice">@item.CustomerMessage</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div>
+            @using (Html.BeginForm("Home", "Admin", null , FormMethod.Post))
+            {
+                <button class="btn btn-success cart-btn-transform m-3 center-block" style = "font-size:18px;font-family: 'Bitter', serif;">Back To Home</button>
+            }
+        </div>
+    </div>
+</div>

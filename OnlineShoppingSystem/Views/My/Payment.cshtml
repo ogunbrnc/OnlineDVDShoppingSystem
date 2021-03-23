@@ -1,0 +1,58 @@
+﻿@model OnlineShoppingSystem.Models.PaymentInformation
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_myLayout.cshtml";
+    <style>
+        * {
+            font-size: 18px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+        }
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 55px;
+        }
+    </style>
+}
+
+<div class="container" style="min-height:650px;">
+    <div class="col-lg-12">
+        <div class="col-lg-12">
+            <h1 style="margin-bottom:40px;">Payment Information</h1>
+            <table class="table table-bordered table-responsive table-hover">
+                <tr>
+                    <td class="col-lg-2"><b>First Name</b></td>
+                    <td>@Model.FirstName</td>
+
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Last Name</b></td>
+                    <td>@Model.LastName</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Address</b></td>
+                    <td>@Model.Address</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>E-Mail</b></td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Phone Number</b></td>
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Total Amount</b></td>
+                    <td>@Model.Amount $</td>
+                </tr>
+            </table>
+            <div class="text-center">
+                @Html.ActionLink("Back to Home", "Home", null, new { @class = "d-inline btn btn-primary ", style = "margin-top:20px;font-size:22px;font-family: 'Bitter', serif;" })
+                @using (Html.BeginForm("Payment", "My", new { CustID = @Model.CustomerID, CartID = Model.CartID }, FormMethod.Post, new { onclick = "return confirm('payment completing') you can check the invoice.", @class = "d-inline"}))
+                {
+                    <button class="btn btn-success" style = "margin-top:20px;font-size:22px;font-family: 'Bitter', serif;" >Complete Payment</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

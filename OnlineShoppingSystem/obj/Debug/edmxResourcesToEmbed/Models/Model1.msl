@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OnlineShoppingSystemDBForWEBModelStoreContainer" CdmEntityContainer="OnlineShoppingSystemDBForWEBEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cart">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="TotalDiscountedCost" ColumnName="TotalDiscountedCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CartItem">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.CartItem">
+        <MappingFragment StoreEntitySet="CartItem">
+          <ScalarProperty Name="CartItemID" ColumnName="CartItemID" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="DiscountedPrice" ColumnName="DiscountedPrice" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactMessage">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.ContactMessage">
+        <MappingFragment StoreEntitySet="ContactMessage">
+          <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+          <ScalarProperty Name="MessageSubject" ColumnName="MessageSubject" />
+          <ScalarProperty Name="CustomerMessage" ColumnName="CustomerMessage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerInformation">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.CustomerInformation">
+        <MappingFragment StoreEntitySet="CustomerInformation">
+          <ScalarProperty Name="CustInfoID" ColumnName="CustInfoID" />
+          <ScalarProperty Name="CustID" ColumnName="CustID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoice">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="CustID" ColumnName="CustID" />
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="BarcodeNumbers" ColumnName="BarcodeNumbers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceProducts">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.InvoiceProducts">
+        <MappingFragment StoreEntitySet="InvoiceProducts">
+          <ScalarProperty Name="InvoiceProductsID" ColumnName="InvoiceProductsID" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductDiscountedPrice" ColumnName="ProductDiscountedPrice" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductDate" ColumnName="ProductDate" />
+          <ScalarProperty Name="ProductNumberOfSales" ColumnName="ProductNumberOfSales" />
+          <ScalarProperty Name="ProductDiscountedRate" ColumnName="ProductDiscountedRate" />
+          <ScalarProperty Name="ProductNumberOfEvaluate" ColumnName="ProductNumberOfEvaluate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductComment">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.ProductComment">
+        <MappingFragment StoreEntitySet="ProductComment">
+          <ScalarProperty Name="ProductCommentID" ColumnName="ProductCommentID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCategory">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.SubCategory">
+        <MappingFragment StoreEntitySet="SubCategory">
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BestCustomer">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.BestCustomer">
+        <MappingFragment StoreEntitySet="BestCustomer">
+          <ScalarProperty Name="total_price" ColumnName="total_price" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CustID" ColumnName="CustID" />
+          <ScalarProperty Name="CustInfoID" ColumnName="CustInfoID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BestDiscountedProduct">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.BestDiscountedProduct">
+        <MappingFragment StoreEntitySet="BestDiscountedProduct">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductDiscountedPrice" ColumnName="ProductDiscountedPrice" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductDate" ColumnName="ProductDate" />
+          <ScalarProperty Name="ProductNumberOfSales" ColumnName="ProductNumberOfSales" />
+          <ScalarProperty Name="ProductDiscountedRate" ColumnName="ProductDiscountedRate" />
+          <ScalarProperty Name="ProductNumberOfEvaluate" ColumnName="ProductNumberOfEvaluate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BestSellingCategory">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.BestSellingCategory">
+        <MappingFragment StoreEntitySet="BestSellingCategory">
+          <ScalarProperty Name="NumberOfSales" ColumnName="NumberOfSales" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BestSellingSubCategory">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.BestSellingSubCategory">
+        <MappingFragment StoreEntitySet="BestSellingSubCategory">
+          <ScalarProperty Name="NumberOfSales" ColumnName="NumberOfSales" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoryWithSubCategory">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.CategoryWithSubCategory">
+        <MappingFragment StoreEntitySet="CategoryWithSubCategory">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerWithInformation">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.CustomerWithInformation">
+        <MappingFragment StoreEntitySet="CustomerWithInformation">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="CustInfoID" ColumnName="CustInfoID" />
+          <ScalarProperty Name="CustID" ColumnName="CustID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerWithoutShopping">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.CustomerWithoutShopping">
+        <MappingFragment StoreEntitySet="CustomerWithoutShopping">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="CustInfoID" ColumnName="CustInfoID" />
+          <ScalarProperty Name="CustID" ColumnName="CustID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerWithShopping">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.CustomerWithShopping">
+        <MappingFragment StoreEntitySet="CustomerWithShopping">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="country" ColumnName="country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HighestStarproduct">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.HighestStarproduct">
+        <MappingFragment StoreEntitySet="HighestStarproduct">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductDiscountedPrice" ColumnName="ProductDiscountedPrice" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductDate" ColumnName="ProductDate" />
+          <ScalarProperty Name="ProductNumberOfSales" ColumnName="ProductNumberOfSales" />
+          <ScalarProperty Name="ProductDiscountedRate" ColumnName="ProductDiscountedRate" />
+          <ScalarProperty Name="ProductNumberOfEvaluate" ColumnName="ProductNumberOfEvaluate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewProduct">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.NewProduct">
+        <MappingFragment StoreEntitySet="NewProduct">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductDiscountedPrice" ColumnName="ProductDiscountedPrice" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductDate" ColumnName="ProductDate" />
+          <ScalarProperty Name="ProductNumberOfSales" ColumnName="ProductNumberOfSales" />
+          <ScalarProperty Name="ProductDiscountedRate" ColumnName="ProductDiscountedRate" />
+          <ScalarProperty Name="ProductNumberOfEvaluate" ColumnName="ProductNumberOfEvaluate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductsWithLowStock">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.ProductsWithLowStock">
+        <MappingFragment StoreEntitySet="ProductsWithLowStock">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductDiscountedPrice" ColumnName="ProductDiscountedPrice" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductDate" ColumnName="ProductDate" />
+          <ScalarProperty Name="ProductNumberOfSales" ColumnName="ProductNumberOfSales" />
+          <ScalarProperty Name="ProductDiscountedRate" ColumnName="ProductDiscountedRate" />
+          <ScalarProperty Name="ProductNumberOfEvaluate" ColumnName="ProductNumberOfEvaluate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductWithBestSelling">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.ProductWithBestSelling">
+        <MappingFragment StoreEntitySet="ProductWithBestSelling">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductDiscountedPrice" ColumnName="ProductDiscountedPrice" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductDate" ColumnName="ProductDate" />
+          <ScalarProperty Name="ProductNumberOfSales" ColumnName="ProductNumberOfSales" />
+          <ScalarProperty Name="ProductDiscountedRate" ColumnName="ProductDiscountedRate" />
+          <ScalarProperty Name="ProductNumberOfEvaluate" ColumnName="ProductNumberOfEvaluate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductWithCategoriesAndSubCategories">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.ProductWithCategoriesAndSubCategories">
+        <MappingFragment StoreEntitySet="ProductWithCategoriesAndSubCategories">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ProductDate" ColumnName="ProductDate" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductDiscountedPrice" ColumnName="ProductDiscountedPrice" />
+          <ScalarProperty Name="ProductDiscountedRate" ColumnName="ProductDiscountedRate" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductNumberOfSales" ColumnName="ProductNumberOfSales" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductWithLeastSelling">
+      <EntityTypeMapping TypeName="OnlineShoppingSystemDBForWEBModel.ProductWithLeastSelling">
+        <MappingFragment StoreEntitySet="ProductWithLeastSelling">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductDiscountedPrice" ColumnName="ProductDiscountedPrice" />
+          <ScalarProperty Name="ProductStar" ColumnName="ProductStar" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductImagePath" ColumnName="ProductImagePath" />
+          <ScalarProperty Name="ProductDate" ColumnName="ProductDate" />
+          <ScalarProperty Name="ProductNumberOfSales" ColumnName="ProductNumberOfSales" />
+          <ScalarProperty Name="ProductDiscountedRate" ColumnName="ProductDiscountedRate" />
+          <ScalarProperty Name="ProductNumberOfEvaluate" ColumnName="ProductNumberOfEvaluate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

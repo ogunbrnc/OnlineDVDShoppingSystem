@@ -1,0 +1,70 @@
+﻿@model OnlineShoppingSystem.Models.ModelMyInvoice
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/_myLayout.cshtml";
+    <style>
+        * {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+        }
+        td{
+            font-size:15px;
+        }
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 55px;
+        }
+        p, label{
+            font-size:20px;
+        }
+        .col-lg-3{
+            font-size:18px;
+        }
+    </style>
+}
+<div style="height:700px;">
+    @if (!Model.Empty)
+    {
+        <div class="col-lg-12" style="background-color:white">
+            <div class="col-lg-12">
+                <h1 style="margin-bottom:30px;"class="text-center">Your Invoice Information</h1>
+                <table class="table table-responsive">
+                    <tr class="text-center">
+                        <td class="col-lg-3">Invoice Date</td>
+                        <td class="col-lg-3">Barcode Number</td>
+                        <td class="col-lg-3">Go Home | Go Payment Detail</td>
+
+                    </tr>
+                    @foreach (var item in Model.listMyInvoice)
+                    {
+                        <tr class="text-center" style="font-size:18px;">
+                            <td><label>@item.InvoiceDate</label></td>
+                            <td><label>@item.BarcodeNumbers</label></td>
+                            <td>
+                                @Html.ActionLink("Back To Menu", "Home",null,new { style = "font-size:18px;font-family: 'Bitter', serif;" }) |
+                                @Html.ActionLink("Go Detail", "PaymentDetail", new { ID = @item.InvoiceID },new { style = "font-size:18px;font-family: 'Bitter', serif;" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container-fluid mt-100">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-body cart">
+                        <div class="col-sm-12 empty-cart-cls text-center">
+                            <i class="fa fa-ban" aria-hidden="true";" style="font-size:250px;"></i>
+                            <h1 style="margin-bottom:20px;">You have no shopping invoice </h1>
+                            <p style="margin-bottom:15px;">You can check our products to do shopping </p>
+                            <a href="/My/Home" class="btn btn-success cart-btn-transform m-3" style="font-size:24px;font-family: 'Bitter', serif;" data-abc="true">continue shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_mylayout.cshtml";
+
+    <style>
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 55px;
+        }
+
+        p {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 23px;
+            font-weight: 500;
+        }
+
+        label {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 20px;
+            font-weight: 500;
+        }
+    </style>
+}
+
+<!-- About Section -->
+<div class="w3-container" style="padding:128px 16px;margin-bottom:50px;height:700px;" id="about">
+    <h1 class="w3-center" style="margin-bottom:20px;">ABOUT THE COMPANY</h1>
+    <p class="w3-center">Key features of our company</p>
+    <div class="w3-row-padding w3-center" style="margin-top:80px;">
+        <div class="w3-quarter">
+            <i class="fa fa-truck" style="font-size:80px;margin-bottom:15px;"></i>
+            <p>Fast delivery</p>
+            <label>Products are delivered to the cargo on the same day and arrive within 2 days.</label>
+        </div>
+        <div class="w3-quarter">
+            <i class="fa fa-credit-card" style="font-size:80px; margin-bottom:15px;" ></i>
+            <p>Secure Payment</p>
+            <label>Your payment information is kept confidential, you can pay safely.</label>
+        </div>
+        <div class="w3-quarter">
+            <i class="fa fa-tags" style="font-size:80px; margin-bottom:15px;"></i>
+            <p>Best Price</p>
+            <label>We guarantee that we have the best price for the product you are looking for.</label>
+        </div>
+        <div class="w3-quarter">
+            <i class="fa fa-film" style="font-size:80px; margin-bottom:15px;"></i>
+            <p>Best Quality</p>
+            <label>If there is a problem with product quality, we will refund money.</label>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineShoppingSystemDBForWEBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="CartID" />
+    </Key>
+    <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="TotalCost" Type="Double" Nullable="false" />
+    <Property Name="TotalDiscountedCost" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Cart__CustomerID__35BCFE0A" FromRole="Cart" ToRole="Customer" />
+    <NavigationProperty Name="CartItem" Relationship="Self.FK__CartItem__CartID__38996AB5" FromRole="Cart" ToRole="CartItem" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK__Payment__CartID__3C69FB99" FromRole="Cart" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="CartItem">
+    <Key>
+      <PropertyRef Name="CartItemID" />
+    </Key>
+    <Property Name="CartItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CartID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="DiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cart" Relationship="Self.FK__CartItem__CartID__38996AB5" FromRole="CartItem" ToRole="Cart" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__CartItem__Produc__398D8EEE" FromRole="CartItem" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Product__Categor__2D27B809" FromRole="Category" ToRole="Product" />
+    <NavigationProperty Name="SubCategory" Relationship="Self.FK__SubCatego__Categ__2A4B4B5E" FromRole="Category" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="ContactMessage">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MessageSubject" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustomerMessage" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cart" Relationship="Self.FK__Cart__CustomerID__35BCFE0A" FromRole="Customer" ToRole="Cart" />
+    <NavigationProperty Name="CustomerInformation" Relationship="Self.FK__CustomerI__CustI__32E0915F" FromRole="Customer" ToRole="CustomerInformation" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__CustID__403A8C7D" FromRole="Customer" ToRole="Invoice" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK__Payment__Custome__3D5E1FD2" FromRole="Customer" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="CustomerInformation">
+    <Key>
+      <PropertyRef Name="CustInfoID" />
+    </Key>
+    <Property Name="CustInfoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__CustomerI__CustI__32E0915F" FromRole="CustomerInformation" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CustID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentID" Type="Int32" Nullable="false" />
+    <Property Name="BarcodeNumbers" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Invoice__CustID__403A8C7D" FromRole="Invoice" ToRole="Customer" />
+    <NavigationProperty Name="Payment" Relationship="Self.FK__Invoice__Payment__412EB0B6" FromRole="Invoice" ToRole="Payment" />
+    <NavigationProperty Name="InvoiceProducts" Relationship="Self.FK__InvoicePr__Invoi__440B1D61" FromRole="Invoice" ToRole="InvoiceProducts" />
+  </EntityType>
+  <EntityType Name="InvoiceProducts">
+    <Key>
+      <PropertyRef Name="InvoiceProductsID" />
+    </Key>
+    <Property Name="InvoiceProductsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InvoiceID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK__InvoicePr__Invoi__440B1D61" FromRole="InvoiceProducts" ToRole="Invoice" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__InvoicePr__Produ__44FF419A" FromRole="InvoiceProducts" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentID" />
+    </Key>
+    <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CartID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cart" Relationship="Self.FK__Payment__CartID__3C69FB99" FromRole="Payment" ToRole="Cart" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK__Payment__Custome__3D5E1FD2" FromRole="Payment" ToRole="Customer" />
+    <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Payment__412EB0B6" FromRole="Payment" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductStock" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductStar" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductNumberOfSales" Type="Int32" />
+    <Property Name="ProductDiscountedRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="Int32" />
+    <NavigationProperty Name="CartItem" Relationship="Self.FK__CartItem__Produc__398D8EEE" FromRole="Product" ToRole="CartItem" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Product__Categor__2D27B809" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="InvoiceProducts" Relationship="Self.FK__InvoicePr__Produ__44FF419A" FromRole="Product" ToRole="InvoiceProducts" />
+    <NavigationProperty Name="SubCategory" Relationship="Self.FK__Product__SubCate__2E1BDC42" FromRole="Product" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="ProductComment">
+    <Key>
+      <PropertyRef Name="ProductCommentID" />
+    </Key>
+    <Property Name="ProductCommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductStar" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryID" />
+    </Key>
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__SubCatego__Categ__2A4B4B5E" FromRole="SubCategory" ToRole="Category" />
+    <NavigationProperty Name="Product" Relationship="Self.FK__Product__SubCate__2E1BDC42" FromRole="SubCategory" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="BestCustomer">
+    <Key>
+      <PropertyRef Name="Address1" />
+      <PropertyRef Name="Country" />
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="CustInfoID" />
+      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="PhoneNumber" />
+    </Key>
+    <Property Name="total_price" Type="Double" />
+    <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustID" Type="Int32" Nullable="false" />
+    <Property Name="CustInfoID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BestDiscountedProduct">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductStock" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductStar" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductNumberOfSales" Type="Int32" />
+    <Property Name="ProductDiscountedRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="BestSellingCategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="NumberOfSales" Type="Int32" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BestSellingSubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryID" />
+    </Key>
+    <Property Name="NumberOfSales" Type="Int32" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoryWithSubCategory">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="CategoryName" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="SubCategoryName" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerWithInformation">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="CustInfoID" />
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Address1" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="PhoneNumber" />
+      <PropertyRef Name="Country" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustInfoID" Type="Int32" Nullable="false" />
+    <Property Name="CustID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerWithoutShopping">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+      <PropertyRef Name="Password" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="CustInfoID" />
+      <PropertyRef Name="CustID" />
+      <PropertyRef Name="FirstName" />
+      <PropertyRef Name="LastName" />
+      <PropertyRef Name="Address1" />
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="PhoneNumber" />
+      <PropertyRef Name="Country" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustInfoID" Type="Int32" Nullable="false" />
+    <Property Name="CustID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerWithShopping">
+    <Key>
+      <PropertyRef Name="customerId" />
+      <PropertyRef Name="firstName" />
+      <PropertyRef Name="lastName" />
+      <PropertyRef Name="PhoneNumber" />
+      <PropertyRef Name="country" />
+    </Key>
+    <Property Name="customerId" Type="Int32" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="17" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HighestStarproduct">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductStock" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductStar" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductNumberOfSales" Type="Int32" />
+    <Property Name="ProductDiscountedRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NewProduct">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductStock" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductStar" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductNumberOfSales" Type="Int32" />
+    <Property Name="ProductDiscountedRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ProductsWithLowStock">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductStock" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductStar" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductNumberOfSales" Type="Int32" />
+    <Property Name="ProductDiscountedRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ProductWithBestSelling">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductStock" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductStar" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductNumberOfSales" Type="Int32" />
+    <Property Name="ProductDiscountedRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ProductWithCategoriesAndSubCategories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="ProductDate" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="CategoryName" />
+      <PropertyRef Name="SubCategoryName" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductDiscountedRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductNumberOfSales" Type="Int32" />
+    <Property Name="ProductPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductStar" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductStock" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SubCategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductWithLeastSelling">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="CategoryID" />
+      <PropertyRef Name="SubCategoryID" />
+      <PropertyRef Name="ProductStock" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="ProductPrice" />
+      <PropertyRef Name="ProductDiscountedPrice" />
+      <PropertyRef Name="ProductDescription" />
+      <PropertyRef Name="ProductImagePath" />
+      <PropertyRef Name="ProductDate" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductStock" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductDiscountedPrice" Type="Double" Nullable="false" />
+    <Property Name="ProductStar" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProductNumberOfSales" Type="Int32" />
+    <Property Name="ProductDiscountedRate" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductNumberOfEvaluate" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__Cart__CustomerID__35BCFE0A">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CartItem__CartID__38996AB5">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+    <End Role="CartItem" Type="Self.CartItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="CartID" />
+      </Principal>
+      <Dependent Role="CartItem">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment__CartID__3C69FB99">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="CartID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CartItem__Produc__398D8EEE">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="CartItem" Type="Self.CartItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="CartItem">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__Categor__2D27B809">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubCatego__Categ__2A4B4B5E">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CustomerI__CustI__32E0915F">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="CustomerInformation" Type="Self.CustomerInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="CustomerInformation">
+        <PropertyRef Name="CustID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__CustID__403A8C7D">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="CustID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payment__Custome__3D5E1FD2">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoice__Payment__412EB0B6">
+    <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Payment">
+        <PropertyRef Name="PaymentID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="PaymentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoicePr__Invoi__440B1D61">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
+    <End Role="InvoiceProducts" Type="Self.InvoiceProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="InvoiceProducts">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__InvoicePr__Produ__44FF419A">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="InvoiceProducts" Type="Self.InvoiceProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="InvoiceProducts">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Product__SubCate__2E1BDC42">
+    <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="SubCategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SubCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineShoppingSystemDBForWEBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" />
+    <EntitySet Name="CartItem" EntityType="Self.CartItem" />
+    <EntitySet Name="Category" EntityType="Self.Category" />
+    <EntitySet Name="ContactMessage" EntityType="Self.ContactMessage" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" />
+    <EntitySet Name="CustomerInformation" EntityType="Self.CustomerInformation" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" />
+    <EntitySet Name="InvoiceProducts" EntityType="Self.InvoiceProducts" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="ProductComment" EntityType="Self.ProductComment" />
+    <EntitySet Name="SubCategory" EntityType="Self.SubCategory" />
+    <EntitySet Name="BestCustomer" EntityType="Self.BestCustomer" />
+    <EntitySet Name="BestDiscountedProduct" EntityType="Self.BestDiscountedProduct" />
+    <EntitySet Name="BestSellingCategory" EntityType="Self.BestSellingCategory" />
+    <EntitySet Name="BestSellingSubCategory" EntityType="Self.BestSellingSubCategory" />
+    <EntitySet Name="CategoryWithSubCategory" EntityType="Self.CategoryWithSubCategory" />
+    <EntitySet Name="CustomerWithInformation" EntityType="Self.CustomerWithInformation" />
+    <EntitySet Name="CustomerWithoutShopping" EntityType="Self.CustomerWithoutShopping" />
+    <EntitySet Name="CustomerWithShopping" EntityType="Self.CustomerWithShopping" />
+    <EntitySet Name="HighestStarproduct" EntityType="Self.HighestStarproduct" />
+    <EntitySet Name="NewProduct" EntityType="Self.NewProduct" />
+    <EntitySet Name="ProductsWithLowStock" EntityType="Self.ProductsWithLowStock" />
+    <EntitySet Name="ProductWithBestSelling" EntityType="Self.ProductWithBestSelling" />
+    <EntitySet Name="ProductWithCategoriesAndSubCategories" EntityType="Self.ProductWithCategoriesAndSubCategories" />
+    <EntitySet Name="ProductWithLeastSelling" EntityType="Self.ProductWithLeastSelling" />
+    <AssociationSet Name="FK__Cart__CustomerID__35BCFE0A" Association="Self.FK__Cart__CustomerID__35BCFE0A">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CartItem__CartID__38996AB5" Association="Self.FK__CartItem__CartID__38996AB5">
+      <End Role="Cart" EntitySet="Cart" />
+      <End Role="CartItem" EntitySet="CartItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment__CartID__3C69FB99" Association="Self.FK__Payment__CartID__3C69FB99">
+      <End Role="Cart" EntitySet="Cart" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CartItem__Produc__398D8EEE" Association="Self.FK__CartItem__Produc__398D8EEE">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="CartItem" EntitySet="CartItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__Categor__2D27B809" Association="Self.FK__Product__Categor__2D27B809">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubCatego__Categ__2A4B4B5E" Association="Self.FK__SubCatego__Categ__2A4B4B5E">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="SubCategory" EntitySet="SubCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CustomerI__CustI__32E0915F" Association="Self.FK__CustomerI__CustI__32E0915F">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="CustomerInformation" EntitySet="CustomerInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__CustID__403A8C7D" Association="Self.FK__Invoice__CustID__403A8C7D">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payment__Custome__3D5E1FD2" Association="Self.FK__Payment__Custome__3D5E1FD2">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoice__Payment__412EB0B6" Association="Self.FK__Invoice__Payment__412EB0B6">
+      <End Role="Payment" EntitySet="Payment" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoicePr__Invoi__440B1D61" Association="Self.FK__InvoicePr__Invoi__440B1D61">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="InvoiceProducts" EntitySet="InvoiceProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__InvoicePr__Produ__44FF419A" Association="Self.FK__InvoicePr__Produ__44FF419A">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="InvoiceProducts" EntitySet="InvoiceProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Product__SubCate__2E1BDC42" Association="Self.FK__Product__SubCate__2E1BDC42">
+      <End Role="SubCategory" EntitySet="SubCategory" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

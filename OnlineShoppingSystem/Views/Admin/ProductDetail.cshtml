@@ -1,0 +1,103 @@
+﻿@model OnlineShoppingSystem.Models.ProductDetail
+@{
+    ViewBag.Title = "ProductEdit";
+    Layout = "~/Views/Shared/_myAdminLayout.cshtml";
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    int i;
+    <style>
+        *{
+            font-size:18px;
+        }
+        .checked {
+            color: orange;
+        }
+
+        .fa-star {
+            font-size: 20px;
+        }
+
+        p,del {
+            font-size: 30px;
+        }
+
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 50px;
+        }
+
+        .price {
+            font-family: 'Bitter', serif;
+            font-weight: 400;
+        }
+
+        .discountedprice {
+            font-family: 'Bitter', serif;
+            font-weight: 700;
+        }
+
+        .description {
+            font-family: 'Zilla Slab', serif;
+        }
+    </style>
+}
+
+<div class="container" style="min-height:800px;">
+    <div>
+        <h1 class="text-uppercase text-center page-header">@Model.product.ProductName</h1>
+        <img class="img-responsive" src="~/Images/@Model.product.ProductImagePath" style="height:70%;width:40%;float:left;padding-right:120px;" />
+
+        <p class="price"><del>Price: @Model.product.ProductPrice$</del></p>
+        <p class="discountedprice">Discounted Price: @Model.product.ProductDiscountedPrice$</p>
+        @for (i = 1; i <= @Model.product.ProductStar; i++)
+        {
+            <span class="fa fa-star checked"></span>
+        }
+        @if (@Model.product.ProductStar - (int)@Model.product.ProductStar != 0)
+        {
+            <span class="fa fa-star-half-o" style="color:orange;font-size:20px;"></span>
+            i++;
+        }
+        @for (; i <= 5; i++)
+        {
+            <span class="fa fa-star"></span>
+        }
+        <p class="description">@Model.product.ProductDescription</p>
+        <div class="text-center" style="margin-top:50px;">
+            @Html.ActionLink("Edit", "ProductUpdate", "Admin", new { ID = Model.product.ProductID, }, new { @class = "btn btn-success cart-btn-transform m-3 ", style = "font-size:18px;font-family: 'Bitter', serif;" })
+        </div>
+    </div>
+    <div class="col-lg-12" style="background-color:white;margin-top:50px;">
+        <div class="col-lg-12">
+            <table class="table table-responsive">
+                <tr class="text-center columns">
+                    <td class="col-lg-3">Comment Owner Username</td>
+                    <td class="col-lg-2">Comments</td>
+                    <td class="col-lg-1">Rate</td>
+                </tr>
+                @foreach (var item in Model.productComments)
+                {
+                    <tr class="text-center" style="font-size:18px;">
+                        <td><label>@item.CustomerName</label></td>
+                        <td><label>@item.Comment</label></td>
+                        <td>
+                            @for (i = 1; i <= item.ProductStar; i++)
+                            {
+                                <span class="fa fa-star checked"></span>
+                            }
+                            @if (item.ProductStar - (int)item.ProductStar != 0)
+                            {
+                                <span class="fa fa-star-half-o" style="color:orange;font-size:20px;"></span>
+                                i++;
+                            }
+                            @for (; i <= 5; i++)
+                            {
+                                <span class="fa fa-star"></span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+

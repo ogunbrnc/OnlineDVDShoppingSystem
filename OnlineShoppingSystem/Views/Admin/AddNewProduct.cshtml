@@ -1,0 +1,81 @@
+﻿@model OnlineShoppingSystem.Models.Product
+@{
+    ViewBag.Title = "AddNewProduct";
+    Layout = "~/Views/Shared/_myAdminLayout.cshtml";
+}
+
+<div class="container" style="min-height:750px;">
+    <div class="col-lg-12">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <br />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ProductID)
+                <div class="form-group">
+                    <b class="control-label col-md-2">Name</b>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <b class="control-label col-md-2">Description</b>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <b class="control-label col-md-2">Stock</b>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductStock, new { htmlAttributes = new { @class = "form-control" , min=1,max=100} })
+                        @Html.ValidationMessageFor(model => model.ProductStock, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <b class="control-label col-md-2">Price</b>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductPrice, new { htmlAttributes = new { @class = "form-control", min=0, max=400} })
+                        @Html.ValidationMessageFor(model => model.ProductPrice, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <b class="control-label col-md-2">Discounted Price</b>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductDiscountedPrice, new { htmlAttributes = new { @class = "form-control",min=0,max=400} })
+                        @Html.ValidationMessageFor(model => model.ProductDiscountedPrice, "", new { @class = "text-danger" })
+                    </div>
+                 </div>
+                  <div class="form-group">
+                    <b class="control-label col-md-2">CategoryID</b>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CategoryID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <b class="control-label col-md-2">SubCategoryID</b>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SubCategoryID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SubCategoryID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <b class="control-label col-md-2">Image Path</b>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ProductImagePath, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductImagePath, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add Product" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

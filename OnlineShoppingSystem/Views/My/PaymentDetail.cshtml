@@ -1,0 +1,77 @@
+﻿@model OnlineShoppingSystem.Models.PaymentInformation
+
+@{
+    ViewBag.Title = "PaymentDetail";
+    Layout = "~/Views/Shared/_myLayout.cshtml";
+    <style>
+        * {
+            font-size: 18px;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+        }
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 55px;
+        }
+        h3 {
+            font-family: 'Lora', serif;
+            font-size: 40px;
+        }
+    </style>
+}
+
+<div class="container" style="min-height:650px;">
+    <div class="col-lg-12">
+        <div class="col-lg-12">
+            <h1 style="margin-bottom:20px;">Payment Details</h1>
+            <table class="table table-bordered table-responsive table-hover">
+                <tr>
+                    <td class="col-lg-2"><b>Customer First Name</b></td>
+                    <td>@Model.FirstName</td>
+
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Customer Last Name</b></td>
+                    <td>@Model.LastName</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Customer Address</b></td>
+                    <td>@Model.Address</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Customer E-Mail</b></td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Customer Phone Number</b></td>
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Total Amount</b></td>
+                    <td>@Model.Amount</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="col-lg-12">
+            <h3 style="margin-bottom:20px;">Products You Have Purchased</h3>
+            <table class="table table-bordered table-responsive table-hover">
+                @foreach (var item in Model.myProductsList)
+                {
+                    <tr class="text-center" style="font-size:18px;">
+                        <td><img class="img-rounded" src="~/Images/@item.ProductImagePath" style="height:200px;width:180px;" /></td>
+                        <td><label>@item.ProductName</label></td>
+                        <td><del class="price">@item.ProductPrice</del></td>
+                        <td><label class="discountedprice">@item.ProductDiscountedPrice$</label></td>
+                        <td>
+                            <div class="text-center"> @Html.ActionLink("Evaluate", "ProductEvaluation", "Product", new { PID=item.ProductID }, new { @class = "btn btn-success cart-btn-transform m-3" })</div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="text-center"> @Html.ActionLink("Go Back", "Invoice", null, new { UserName = Session["UserName"].ToString() }, new { @class = "btn btn-success cart-btn-transform m-3" })</div>
+</div>

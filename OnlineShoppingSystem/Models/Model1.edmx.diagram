@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="df2b517bf0bf4cb68bf2376c91667fe4" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.Cart" Width="1.5" PointX="0.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.CartItem" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.Category" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.ContactMessage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.Customer" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.CustomerInformation" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.Invoice" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.InvoiceProducts" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.Payment" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.Product" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.ProductComment" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.SubCategory" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.BestCustomer" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.BestDiscountedProduct" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.BestSellingCategory" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.BestSellingSubCategory" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.CategoryWithSubCategory" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.CustomerWithInformation" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.CustomerWithoutShopping" Width="1.5" PointX="11.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.CustomerWithShopping" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.HighestStarproduct" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.NewProduct" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.ProductsWithLowStock" Width="1.5" PointX="13.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.ProductWithBestSelling" Width="1.5" PointX="13.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.ProductWithCategoriesAndSubCategories" Width="1.5" PointX="9.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineShoppingSystemDBForWEBModel.ProductWithLeastSelling" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__Cart__CustomerID__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__CartItem__CartID__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__Payment__CartID__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__CartItem__Produc__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__Product__Categor__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__SubCatego__Categ__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__CustomerI__CustI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__Invoice__CustID__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__Payment__Custome__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__Invoice__Payment__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__InvoicePr__Invoi__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__InvoicePr__Produ__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineShoppingSystemDBForWEBModel.FK__Product__SubCate__2E1BDC42" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

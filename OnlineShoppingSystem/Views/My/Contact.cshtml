@@ -1,0 +1,72 @@
+﻿@model OnlineShoppingSystem.Models.ContactMessage
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_mylayout.cshtml";
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 55px;
+        }
+
+        p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 27px;
+            font-weight: 600;
+        }
+
+        form-group {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+        }
+    </style>
+}
+<div class="w3-container" style="padding:50px 16px;min-height:700px;" id="contact">
+    <h1 class="text-center">CONTACT</h1>
+    <p class="text-center">Lets get in touch. Send us a message</p>
+    <div style="margin-top:50px">
+        <div class="form-horizontal">
+            @using (Html.BeginForm("Contact", "My", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="container">
+                    <div class="form-group">
+                        <label for="CustomerName"><b>Your Name</b></label>
+                        <div>
+                            @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control w3-input w3-border", placeholder = "Name", required = "Name", type = "text" } })
+                            @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="CustomerEmail"><b>Your Email</b></label>
+                        <div>
+                            @Html.EditorFor(model => model.CustomerEmail, new { htmlAttributes = new { @class = "form-control w3-input w3-border", placeholder = "Email", required = "Email", type = "text" } })
+                            @Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="MessageSubject"><b>Your Message Subject</b></label>
+                        <div>
+                            @Html.EditorFor(model => model.MessageSubject, new { htmlAttributes = new { @class = "form-control w3-input w3-border", placeholder = "Subject", required = "Subject", type = "text" } })
+                            @Html.ValidationMessageFor(model => model.MessageSubject, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="CustomerMessage"><b>Your Email</b></label>
+                        <div>
+                            @Html.EditorFor(model => model.CustomerMessage, new { htmlAttributes = new { @class = "form-control w3-input w3-border", placeholder = "Message", required = "Message", type = "text" } })
+                            @Html.ValidationMessageFor(model => model.CustomerMessage, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="SEND MESSAGE" class="w3-button w3-black" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

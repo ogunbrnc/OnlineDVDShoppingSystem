@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_mylayout.cshtml";
+}
+
+<div class="container" style="min-height:650px;">
+    <div class="col-lg-12">
+        <div class="col-lg-12">
+            <h1 style="margin-bottom:20px;">My Profile Information</h1>
+            <table class="table table-bordered table-responsive table-hover">
+                <tr>
+                    <td class="col-lg-2"><b>Customer First Name</b></td>
+                    <td>@Model.FirstName</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Customer Last Name</b></td>
+                    <td>@Model.LastName</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Customer Address</b></td>
+                    <td>@Model.Address1</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Customer E-Mail</b></td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td class="col-lg-2"><b>Customer Phone Number</b></td>
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+            </table>
+            @Html.ActionLink("Update My Shipping Information", "UpdateInformation", null, new { ID = Session["CustomerID"] }, new { @class = "btn btn-success cart-btn-transform m-3 center-block", style="max-width:300px;"})
+        </div>
+    </div>
+   
+</div>

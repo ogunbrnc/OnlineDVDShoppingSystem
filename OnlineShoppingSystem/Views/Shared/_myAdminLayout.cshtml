@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Online DVD Shopping System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@300&display=swap" rel="stylesheet">
+    <style>
+        .mylogo {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 35px;
+        }
+        .myMenu {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 18px;
+        }
+    </style>
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="padding:12px 0px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Online DVD Shopping System", "Home", "Admin", null, new { @class = "navbar-brand mylogo", style = "padding-right:50px;font-size: 35px;" })
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active myMenu"><a href="~/Admin/Home">Home</a></li>
+                    <li><a href="~/Admin/AddNewProduct" class="myMenu">Add New Product</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle myMenu" data-toggle="dropdown" href="#">Movie<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Drama", "ListProductWithSubCategory", "Admin", new { CatID = 1, SubID = 1 }, new { @class = "myMenu" })</li>
+                            <li>@Html.ActionLink("Action", "ListProductWithSubCategory", "Admin", new { CatID = 1, SubID = 2 }, new { @class = "myMenu" })</li>
+                            <li>@Html.ActionLink("Emotional", "ListProductWithSubCategory", "Admin", new { CatID = 1, SubID = 3 }, new { @class = "myMenu" }) </li>
+                            <li>@Html.ActionLink("Comedy", "ListProductWithSubCategory", "Admin", new { CatID = 1, SubID = 4 }, new { @class = "myMenu" }) </li>
+                            <li>@Html.ActionLink("Cartoon", "ListProductWithSubCategory", "Admin", new { CatID = 1, SubID = 5 }, new { @class = "myMenu" }) </li>
+                            <li>@Html.ActionLink("Horror", "ListProductWithSubCategory", "Admin", new { CatID = 1, SubID = 6 }, new { @class = "myMenu" }) </li>
+                            <li>@Html.ActionLink("Adventure", "ListProductWithSubCategory", "Admin", new { CatID = 1, SubID = 7 }, new { @class = "myMenu" }) </li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle myMenu" data-toggle="dropdown" href="#">Game<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Action", "ListProductWithSubCategory", "Admin", new { CatID = 2, SubID = 8 }, new { @class = "myMenu" })</li>
+                            <li>@Html.ActionLink("Playstation-5", "ListProductWithSubCategory", "Admin", new { CatID = 2, SubID = 9 }, new { @class = "myMenu" }) </li>
+                            <li>@Html.ActionLink("Sport", "ListProductWithSubCategory", "Admin", new { CatID = 2, SubID = 10 }, new { @class = "myMenu" }) </li>
+                            <li>@Html.ActionLink("Racing", "ListProductWithSubCategory", "Admin", new { CatID = 2, SubID = 11 }, new { @class = "myMenu" }) </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle myMenu" data-toggle="dropdown" href="#">Series<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Children", "ListProductWithSubCategory", "Admin", new { CatID = 3, SubID = 12 }, new { @class = "myMenu" })</li>
+                            <li>@Html.ActionLink("Animated", "ListProductWithSubCategory", "Admin", new { CatID = 3, SubID = 13 }, new { @class = "myMenu" })</li>
+                            <li>@Html.ActionLink("Fantasy", "ListProductWithSubCategory", "Admin", new { CatID = 3, SubID = 14 }, new { @class = "myMenu" }) </li>
+                            <li>@Html.ActionLink("Sci-Fi", "ListProductWithSubCategory", "Admin", new { CatID = 3, SubID = 15 }, new { @class = "myMenu" }) </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle myMenu" data-toggle="dropdown" href="#">Music<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Alternative", "ListProductWithSubCategory", "Admin", new { CatID = 4, SubID = 16 }, new { @class = "myMenu" })</li>
+                            <li>@Html.ActionLink("Classical", "ListProductWithSubCategory", "Admin", new { CatID = 4, SubID = 17 }, new { @class = "myMenu" }) </li>
+                            <li>@Html.ActionLink("Pop", "ListProductWithSubCategory", "Admin", new { CatID = 4, SubID = 18 }, new { @class = "myMenu" }) </li>
+                        </ul>
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("Search", "Admin", FormMethod.Get, new { style = "display:inline-block;margin-top:11px", @class = "myMenu" }))
+                        {
+                            @Html.TextBox("searching", null, new { placeholder = "Search", @class = "form-input", style = "width:200px;height:25px;font-size:15px" })
+                            <input type="submit" value="&#xf0f6" class="fa fa-search" aria-hidden="true" style="height:25px" />
+                        }
+                    </li>
+                </ul>
+               
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["AdminUserName"] != null && !String.IsNullOrEmpty(Session["AdminUserName"].ToString()))
+                    {
+                        <li><strong style="color:white;" class="myMenu">Hello @Session["AdminUserName"].ToString()</strong></li>
+                        <li>@Html.ActionLink("Log Out", "Logout", "Admin",null, new { @class="myMenu"})</li>
+                        <li>@Html.ActionLink("Messages","ContactMessages","Admin",null, new { @class = "myMenu" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Log In", "Login", "Admin",null, new { @class = "myMenu" })</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+    <footer class="page-footer font-small w3-center w3-black w3-padding-32" style="margin-top:50px;">
+        <div class="w3-xlarge w3-section w3-hover-opacity">
+            <i class="fa fa-facebook-official"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-snapchat"></i>
+            <i class="fa fa-pinterest-p"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+    </footer>
+</body>
+</html>

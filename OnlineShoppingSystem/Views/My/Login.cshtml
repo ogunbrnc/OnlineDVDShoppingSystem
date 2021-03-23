@@ -1,0 +1,39 @@
+﻿@model OnlineShoppingSystem.Models.Customer
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_mylayout.cshtml";
+    <link href="~/Style/stylesheet.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+}
+
+<div class="bg-img" >
+    @using (Html.BeginForm("Login", "My", FormMethod.Post))
+    {
+        <div class="form-horizontal text-center">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.CustomerID)
+            <div class="container">
+                <div class="form-group">
+                    <label for="username"><b>Username</b></label>
+                    <div>
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your username", required = "You should enter your username", type = "text" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username"><b>Password</b></label>
+                    <div>
+                        @Html.EditorFor(model => model.Password, new {  htmlAttributes = new { @class = "form-control", placeholder = "Enter your password", required = "You should enter your password", type = "password" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-success" style="font-size:18px;font-family: 'Bitter', serif;" />
+                </div>
+                <strong class="alert-warning">@ViewBag.Message</strong>
+            </div>
+        </div>
+    }
+</div>
+

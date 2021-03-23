@@ -1,0 +1,134 @@
+﻿@model OnlineShoppingSystem.Models.SubCategoryProducts
+@{
+    ViewBag.Title = "ListProductWithSubCategory";
+    Layout = "~/Views/Shared/_mylayout.cshtml";
+    <style>
+        p {
+            font-size: 15px;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        .fa-star {
+            font-size: 20px;
+        }
+
+        .price {
+            font-family: 'Bitter', serif;
+            font-weight: 400;
+        }
+
+        .discountedprice {
+            font-family: 'Bitter', serif;
+            font-weight: 700;
+        }
+
+        .discountedrate {
+            color: #6E7DA5;
+            font-weight: 700;
+            font-family: 'Bitter', serif;
+        }
+
+        .myItemMenu {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 18px;
+        }
+    </style>
+}
+
+
+<div class="container" style="margin-bottom:50px;">
+    <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav myItemMenu">
+            <li class="dropdown">
+                <a class="dropdown-toggle myItemMenu" data-toggle="dropdown" href="#" style="background-color:#222222;color:white">Sort Products By<span class="caret"></span></a>
+                <ul class="dropdown-menu" style="background-color:#222222;color:white;">
+                    <li>
+                        @using (Html.BeginForm("ListProductWithSubCategory", "Product", new { CatID = Model.ProductCategoryID, SubID = Model.ProductSubCategoryID, sortBy = "ascPrice" }, FormMethod.Post))
+                        {
+                            <button class="btn" style="width:100%;background-color:#222222;color:white;">Lowest Price</button>
+                        }
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("ListProductWithSubCategory", "Product", new { CatID = Model.ProductCategoryID, SubID = Model.ProductSubCategoryID, sortBy = "descPrice" }, FormMethod.Post))
+                        {
+                            <button class="btn" style="width:100%;background-color:#222222;color:white;">Highest Price</button>
+                        }
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("ListProductWithSubCategory", "Product", new { CatID = Model.ProductCategoryID, SubID = Model.ProductSubCategoryID, sortBy = "descStar" }, FormMethod.Post))
+                        {
+                            <button class="btn" style="width:100%;background-color:#222222;color:white;">Highest Star</button>
+                        }
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("ListProductWithSubCategory", "Product", new { CatID = Model.ProductCategoryID, SubID = Model.ProductSubCategoryID, sortBy = "descDate" }, FormMethod.Post))
+                        {
+                            <button class="btn" style="width:100%;background-color:#222222;color:white;">The Newest</button>
+                        }
+                    </li>
+
+                    <li>
+                        @using (Html.BeginForm("ListProductWithSubCategory", "Product", new { CatID = Model.ProductCategoryID, SubID = Model.ProductSubCategoryID, sortBy = "descRate" }, FormMethod.Post))
+                        {
+                            <button class="btn" style="width:100%;background-color:#222222;color:white;">The Most Discount Rate</button>
+                        }
+                    </li>
+
+                    <li>
+                        @using (Html.BeginForm("ListProductWithSubCategory", "Product", new { CatID = Model.ProductCategoryID, SubID = Model.ProductSubCategoryID, sortBy = "descSale" }, FormMethod.Post))
+                        {
+                            <button class="btn" style="width:100%;background-color:#222222;color:white;">Best Sellers</button>
+                        }
+                    </li>
+                    <li>
+                        @using (Html.BeginForm("ListProductWithSubCategory", "Product", new { CatID = Model.ProductCategoryID, SubID = Model.ProductSubCategoryID, sortBy = "descEvaluate" }, FormMethod.Post))
+                        {
+                            <button class="btn" style="width:100%;background-color:#222222;color:white;">Most Rated</button>
+                        }
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div style="height:800px;" class="container body-content table-responsive table-bordered main">
+
+
+    @foreach (var item in Model.myProductList)
+    {
+        int i;
+        <div style="display:inline-block;padding:20px 13px;">
+            <div><img class="img-rounded img-responsive" src="~/Images/@item.ProductImagePath" style="height:250px;width:195px;" /></div>
+            <div class="text-center price"><p>Price:<del>@item.ProductPrice$</del></div>
+            <div class="text-center discountedrate"><p>%@item.ProductDiscountedRate</p></div>
+            <div class="text-center discountedprice"><p>Discounted Price:@item.ProductDiscountedPrice$</p></div>
+            <div class="text-center" style="margin-bottom:10px;">
+
+                <label>@item.ProductStar</label>
+                @for (i = 1; i <= item.ProductStar; i++)
+                {
+                    <span class="fa fa-star checked"></span>
+                }
+                @if (item.ProductStar - (int)item.ProductStar != 0)
+                {
+                    <span class="fa fa-star-half-o" style="color:orange;"></span>
+                    i++;
+                }
+                @for (; i <= 5; i++)
+                {
+                    <span class="fa fa-star"></span>
+                }
+                <label>(@item.ProductNumberOfEvaluate)</label>
+
+            </div>
+            <div class="text-center"> @Html.ActionLink("See Detail", "ProductDetails", "Product", new { PID = item.ProductID, PName = item.ProductName }, new { @class = "btn btn-success cart-btn-transform m-3 ", style = "font-size:18px;font-family: 'Bitter', serif;" })</div>
+        </div>
+    }
+</div>
+
