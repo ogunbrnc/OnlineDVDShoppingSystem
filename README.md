@@ -1,4 +1,4 @@
-<h1>OnlineDVDShoppingSystem<h1>
+<h1>OnlineDVDShoppingSystem</h1>
 <p>Online DVD&VCD Shopping web portal with MVC and also database connection.</p>
 <h1>Login/Signup Page</h1>
 <p>Users should log in before purchasing a product.</p>
